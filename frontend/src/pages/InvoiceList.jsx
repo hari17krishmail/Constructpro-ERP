@@ -94,7 +94,7 @@ const InvoiceList = () => {
 
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
-    doc.setTextColor(30, 64, 175);
+    doc.setTextColor(168, 136, 42);
     doc.text('ConstructPro ERP — Invoice List', 14, 18);
 
     doc.setFontSize(9);
@@ -131,7 +131,7 @@ const InvoiceList = () => {
         fmt(inv.total),
       ]),
       styles: { fontSize: 9, cellPadding: 4 },
-      headStyles: { fillColor: [30, 64, 175], textColor: 255, fontStyle: 'bold' },
+      headStyles: { fillColor: [201, 168, 76], textColor: 255, fontStyle: 'bold' },
       alternateRowStyles: { fillColor: [248, 250, 252] },
       columnStyles: { 6: { halign: 'right', fontStyle: 'bold' } },
       margin: { left: 14, right: 14 },

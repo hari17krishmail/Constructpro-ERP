@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import api from '../api/client';
 
 const CARDS = [
-  { key: 'totalClients',    label: 'Total Clients',      color: '#6366f1' },
-  { key: 'totalPMs',        label: 'Project Managers',   color: '#8b5cf6' },
-  { key: 'totalAccountants',label: 'Accountants',        color: '#0ea5e9' },
-  { key: 'totalProjects',   label: 'Total Projects',     color: '#14b8a6' },
+  { key: 'totalClients',    label: 'Total Clients',      color: '#C9A84C' },
+  { key: 'totalPMs',        label: 'Project Managers',   color: '#A8882A' },
+  { key: 'totalAccountants',label: 'Accountants',        color: '#D4A843' },
+  { key: 'totalProjects',   label: 'Total Projects',     color: '#8B6914' },
   { key: 'totalInvoices',   label: 'Total Invoices',     color: '#64748b' },
   // { key: 'draft',           label: 'Draft',              color: '#94a3b8' },
   { key: 'pendingApproval', label: 'Pending Approval',   color: '#f59e0b' },
-  { key: 'approved',        label: 'Approved',           color: '#06b6d4' },
-  // { key: 'sent',            label: 'Sent',               color: '#3b82f6' },
+  { key: 'approved',        label: 'Approved',           color: '#C9A84C' },
+  // { key: 'sent',            label: 'Sent',               color: '#C9A84C' },
   { key: 'paid',            label: 'Paid',               color: '#22c55e' },
   { key: 'rejected',        label: 'Rejected',           color: '#ef4444' },
 ];

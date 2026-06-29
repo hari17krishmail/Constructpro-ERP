@@ -2,6 +2,12 @@ import { createContext, useCallback, useContext, useState } from 'react';
 
 const ToastContext = createContext(null);
 
+const ICONS = {
+  success: '✓',
+  error:   '✕',
+  info:    'i',
+};
+
 export const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
@@ -21,7 +27,8 @@ export const ToastProvider = ({ children }) => {
       <div className="toast-container">
         {toasts.map((t) => (
           <div key={t.id} className={`toast toast-${t.type}`}>
-            <span>{t.message}</span>
+            <span className="toast-icon">{ICONS[t.type] ?? ICONS.success}</span>
+            <span className="toast-msg">{t.message}</span>
             <button className="toast-close" onClick={() => remove(t.id)}>✕</button>
           </div>
         ))}

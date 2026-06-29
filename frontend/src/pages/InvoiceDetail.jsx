@@ -142,7 +142,7 @@ const InvoiceDetail = () => {
     // ── Company header (left) + Invoice number (right) ──────
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
-    doc.setTextColor(30, 64, 175);
+    doc.setTextColor(168, 136, 42);
     doc.text('ConstructPro ERP', margin, 20);
 
     doc.setFontSize(8.5);
@@ -265,7 +265,7 @@ const InvoiceDetail = () => {
         fmt(item.lineTotal),
       ]),
       styles: { fontSize: 9, cellPadding: 4 },
-      headStyles: { fillColor: [30, 64, 175], textColor: 255, fontStyle: 'bold' },
+      headStyles: { fillColor: [201, 168, 76], textColor: 255, fontStyle: 'bold' },
       alternateRowStyles: { fillColor: [248, 250, 252] },
       columnStyles: {
         2: { halign: 'right' },
@@ -293,7 +293,7 @@ const InvoiceDetail = () => {
 
     doc.setFontSize(12);
     doc.setFont('helvetica', 'bold');
-    doc.setTextColor(30, 64, 175);
+    doc.setTextColor(168, 136, 42);
     doc.text('Total', labelX, endY + 17);
     doc.text(fmt(invoice.total), rightX, endY + 17, { align: 'right' });
 
