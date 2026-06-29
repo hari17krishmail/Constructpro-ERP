@@ -4,7 +4,7 @@ const getProjects = async (req, res) => {
   const { user } = req;
   let filter = {};
 
-  // PROJECT_MANAGER sees only their assigned projects
+  // project manager sees only their assigned projects
   if (user.role === 'PROJECT_MANAGER') {
     filter._id = { $in: user.projectIds };
   }

@@ -20,14 +20,7 @@ const recalculate = (lineItems, taxRate) => {
   return { items, subtotal, taxAmount, total, taxRate: rate };
 };
 
-/**
- * Build a MongoDB filter that enforces per-role data isolation at the
- * query level — not as a post-load check.
- *
- * CLIENT_VIEWER: APPROVED, SENT, and PAID invoices (visible once PM approves).
- * PROJECT_MANAGER: only invoices for their assigned projects.
- * ADMIN / ACCOUNTANT: all invoices.
- */
+
 const buildScopeFilter = async (user) => {
   if (user.role === 'CLIENT_VIEWER') {
     return { status: { $in: ['APPROVED', 'PAID'] } };
@@ -43,9 +36,7 @@ const POPULATE_OPTS = [
   { path: 'approvedBy', select: 'name email role' },
 ];
 
-// ---------------------------------------------------------------------------
 // Status transition rules
-// ---------------------------------------------------------------------------
 
 const ALLOWED_TRANSITIONS = {
   DRAFT: { PENDING_APPROVAL: ['ACCOUNTANT'] },
@@ -58,9 +49,7 @@ const ALLOWED_TRANSITIONS = {
   REJECTED: { DRAFT: ['ACCOUNTANT'] },
 };
 
-// ---------------------------------------------------------------------------
 // Controllers
-// ---------------------------------------------------------------------------
 
 const getInvoices = async (req, res) => {
   const scopeFilter = await buildScopeFilter(req.user);
@@ -153,9 +142,7 @@ const updateInvoice = async (req, res) => {
   res.json(populated);
 };
 
-// ---------------------------------------------------------------------------
 // Status transitions — one controller per transition for clarity
-// ---------------------------------------------------------------------------
 
 const transitionStatus = async (req, res, fromStatus, toStatus) => {
   const invoice = await Invoice.findById(req.params.id);

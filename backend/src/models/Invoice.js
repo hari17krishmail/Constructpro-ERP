@@ -35,7 +35,7 @@ const invoiceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Auto-generate invoice number before first save
+// Auto-generate invoice number 
 invoiceSchema.pre('save', async function (next) {
   if (this.invoiceNumber) return next();
   const year = new Date().getFullYear();
