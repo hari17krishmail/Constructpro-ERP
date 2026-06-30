@@ -9,13 +9,11 @@ const UserForm = () => {
   const navigate = useNavigate();
   const toast = useToast();
 
-  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'ACCOUNTANT', projectIds: [] });
-  const [projects, setProjects] = useState([]);
+  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'ACCOUNTANT' });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    api.get('/projects').then(({ data }) => setProjects(data));
     if (isEdit) {
       api.get(`/users/${id}`)
         .then(({ data }) => setForm({
@@ -23,27 +21,17 @@ const UserForm = () => {
           email: data.email,
           password: '',
           role: data.role,
-          projectIds: (data.projectIds || []).map((p) => p._id || p),
         }))
         .catch(() => setError('Failed to load user'));
     }
   }, [id, isEdit]);
-
-  const toggleProject = (pid) => {
-    setForm((prev) => ({
-      ...prev,
-      projectIds: prev.projectIds.includes(pid)
-        ? prev.projectIds.filter((p) => p !== pid)
-        : [...prev.projectIds, pid],
-    }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
     setError('');
     try {
-      const payload = { name: form.name, email: form.email, role: form.role, projectIds: form.projectIds };
+      const payload = { name: form.name, email: form.email, role: form.role };
       if (form.password) payload.password = form.password;
       if (isEdit) {
         await api.put(`/users/${id}`, payload);
@@ -109,33 +97,12 @@ const UserForm = () => {
           <label>Role *</label>
           <select
             value={form.role}
-            onChange={(e) => setForm({ ...form, role: e.target.value, projectIds: [] })}
+            onChange={(e) => setForm({ ...form, role: e.target.value })}
           >
             <option value="ACCOUNTANT">Accountant</option>
             <option value="PROJECT_MANAGER">Project Manager</option>
           </select>
         </div>
-
-        {form.role === 'PROJECT_MANAGER' && projects.length > 0 && (
-          <div className="form-group">
-            <label>Assigned Projects</label>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {projects.map((p) => (
-                <label
-                  key={p._id}
-                  style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontWeight: 400, textTransform: 'none', letterSpacing: 0, fontSize: 13, color: 'var(--text)' }}
-                >
-                  <input
-                    type="checkbox"
-                    checked={form.projectIds.includes(p._id)}
-                    onChange={() => toggleProject(p._id)}
-                  />
-                  {p.name}
-                </label>
-              ))}
-            </div>
-          </div>
-        )}
 
         <div className="form-actions">
           <button type="submit" className="btn btn-primary" disabled={saving}>

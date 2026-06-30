@@ -1,15 +1,7 @@
 const Project = require('../models/Project');
 
 const getProjects = async (req, res) => {
-  const { user } = req;
-  let filter = {};
-
-  // project manager sees only their assigned projects
-  if (user.role === 'PROJECT_MANAGER') {
-    filter._id = { $in: user.projectIds };
-  }
-
-  const projects = await Project.find(filter)
+  const projects = await Project.find({})
     .sort({ createdAt: -1 })
     .lean();
 
