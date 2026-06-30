@@ -15,7 +15,7 @@ app.use(( req, res, next ) =>{
   console.log("hitted", req.headers, req.originalUrl, req.origin)
   next()
 });
-app.use(cors({ origin: ['https://constructproerp.netlify.app/', "http://localhost:5173",], credentials: true, }));
+app.use(cors({ origin: ['https://constructproerp.netlify.app', "http://localhost:5173",], credentials: true, }));
 app.use(express.json());
 
 app.use(( req, res, next ) =>{
