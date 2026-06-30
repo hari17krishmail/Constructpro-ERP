@@ -9,7 +9,7 @@ const lineItemSchema = new mongoose.Schema(
     category: { type: String, enum: CATEGORIES, required: true },
     quantity: { type: Number, required: true, min: 0 },
     unitPrice: { type: Number, required: true, min: 0 },
-    lineTotal: { type: Number, required: true }, // always server-calculated
+    lineTotal: { type: Number, required: true }, 
   },
   { _id: true }
 );
@@ -23,7 +23,7 @@ const invoiceSchema = new mongoose.Schema(
     issueDate: { type: Date, required: true },
     dueDate: { type: Date, required: true },
     lineItems: { type: [lineItemSchema], default: [] },
-    // Server-calculated totals — never accepted from client
+    // Server-calculated totals 
     subtotal: { type: Number, default: 0 },
     taxRate: { type: Number, default: 0, min: 0, max: 100 },
     taxAmount: { type: Number, default: 0 },

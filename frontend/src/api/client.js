@@ -13,7 +13,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Surface 401s as a logout signal
+//401 as a logout 
 api.interceptors.response.use(
   (res) => res,
   (err) => {

@@ -30,10 +30,10 @@ router.post('/:id/send', authorize('ACCOUNTANT'), sendInvoice);
 router.post('/:id/pay', authorize('ACCOUNTANT'), markPaid);
 router.post('/:id/redraft', authorize('ACCOUNTANT'), redraftInvoice);
 
-// project manager only — set status via dropdown (PENDING_APPROVAL | APPROVED | REJECTED)
+// project manager only 
 router.put('/:id/status', authorize('PROJECT_MANAGER'), setInvoiceStatus);
 
-// client viewer only — mark approved invoice as paid
+// client viewer only 
 router.post('/:id/client-pay', authorize('CLIENT_VIEWER'), clientPayInvoice);
 
 module.exports = router;

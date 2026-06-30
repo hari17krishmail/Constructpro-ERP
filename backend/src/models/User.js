@@ -10,9 +10,6 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true, select: false },
     role: { type: String, enum: ROLES, required: true },
     // CLIENT_VIEWER only: which client this user belongs to
-    // sparse: true so multiple non-CLIENT_VIEWER users can have null without
-    // violating any uniqueness constraint. Multiple viewers per client is valid.
-    // clientId: { type: mongoose.Schema.Types.ObjectId, ref: 'Client', default: null },
     clientId: { type: Number, unique: true, sparse: true },
     projectIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }],
     isActive: { type: Boolean, default: true },

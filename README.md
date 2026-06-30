@@ -42,3 +42,20 @@ aabitha@constructpro.com | PROJECT_MANAGER |  Approve or reject invoices |
 hari@gmail.com | PROJECT_MANAGER |  PAID Only |
 
 
+## Deployment
+
+The project source code is maintained in GitHub.
+
+### Backend Deployment
+
+The backend is deployed on Render and connected to a MongoDB Atlas cloud cluster.
+
+### Frontend Deployment
+
+The frontend build is deployed on Netlify.
+
+### Demo Link
+
+Frontend: https://constructproerp.netlify.app/
+
+

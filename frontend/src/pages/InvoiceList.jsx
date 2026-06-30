@@ -359,7 +359,7 @@ const InvoiceList = () => {
         </div>
       )}
 
-      {/* ── PM Edit Status Modal ─────────────────────────── */}
+      {/* PM Edit Status Modal */}
       {editModal && (
         <div className="modal-backdrop" onClick={closeEdit}>
           <div className="modal" style={{ maxWidth: 420 }} onClick={(e) => e.stopPropagation()}>
@@ -413,7 +413,7 @@ const InvoiceList = () => {
         </div>
       )}
 
-      {/* ── Client Viewer Pay Confirmation Modal ─────────── */}
+      {/* Client Viewer Pay Confirmation Modal  */}
       {payModal && (
         <div className="modal-backdrop" onClick={closePayModal}>
           <div className="modal" style={{ maxWidth: 400 }} onClick={(e) => e.stopPropagation()}>

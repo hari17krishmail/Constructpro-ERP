@@ -1,13 +1,9 @@
 const Invoice = require('../models/Invoice');
 
-// ---------------------------------------------------------------------------
 // Helpers
-// ---------------------------------------------------------------------------
 
-/**
- * Recalculate line totals, subtotal, taxAmount, and total server-side.
- * Never trusts numbers coming from the request body.
- */
+// line totals, subtotal, taxAmount, and total server-side
+
 const recalculate = (lineItems, taxRate) => {
   const items = lineItems.map((item) => ({
     ...item,
@@ -26,7 +22,7 @@ const buildScopeFilter = async (user) => {
     return { status: { $in: ['APPROVED', 'PAID'] } };
   }
 
-  return {}; // PM, ADMIN, ACCOUNTANT see everything; controller enforces per-role actions
+  return {}; 
 };
 
 const POPULATE_OPTS = [
@@ -54,11 +50,10 @@ const ALLOWED_TRANSITIONS = {
 const getInvoices = async (req, res) => {
   const scopeFilter = await buildScopeFilter(req.user);
 
-  // Optional query filters (project, status)
   if (req.query.projectId) scopeFilter.projectId = req.query.projectId;
   if (req.query.status) {
-    // CLIENT_VIEWER status filter is already locked to [APPROVED, SENT, PAID]; let them
-    // narrow further but not expand beyond what scope allows.
+    // CLIENT_VIEWER status filter 
+    
     if (scopeFilter.status) {
       const allowed = scopeFilter.status.$in;
       const requested = req.query.status;
@@ -82,8 +77,8 @@ const getInvoice = async (req, res) => {
   const scopeFilter = await buildScopeFilter(req.user);
   scopeFilter._id = req.params.id;
 
-  // Single query — if this user has no access to the invoice it simply
-  // won't be found, returning 404 rather than leaking that it exists.
+  // if this user has no access to the invoice
+ 
   const invoice = await Invoice.findOne(scopeFilter).populate(POPULATE_OPTS).lean();
   if (!invoice) return res.status(404).json({ message: 'Invoice not found' });
 
@@ -162,7 +157,7 @@ const transitionStatus = async (req, res, fromStatus, toStatus) => {
   invoice.status = toStatus;
   if (toStatus === 'APPROVED') invoice.approvedBy = req.user._id;
   if (toStatus === 'REJECTED') invoice.rejectionNote = req.body.note || '';
-  if (toStatus === 'DRAFT') invoice.rejectionNote = ''; // re-draft clears note
+  if (toStatus === 'DRAFT') invoice.rejectionNote = ''; 
 
   await invoice.save();
 
@@ -176,7 +171,7 @@ const markPaid        = (req, res) => transitionStatus(req, res, 'SENT',     'PA
 const redraftInvoice  = (req, res) => transitionStatus(req, res, 'REJECTED', 'DRAFT');
 const clientPayInvoice = (req, res) => transitionStatus(req, res, 'APPROVED', 'PAID');
 
-// PROJECT_MANAGER: set status to PENDING_APPROVAL | APPROVED | REJECTED via dropdown
+// PROJECT_MANAGER: set status to PENDING_APPROVAL | APPROVED | REJECTED 
 const setInvoiceStatus = async (req, res) => {
   const { status, note } = req.body;
   const PM_STATUSES = ['PENDING_APPROVAL', 'APPROVED', 'REJECTED'];
