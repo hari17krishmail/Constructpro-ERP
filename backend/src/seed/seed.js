@@ -24,51 +24,51 @@ const seed = async () => {
   // Skip bcrypt pre-save by using insertMany with pre-hashed passwords.
   // clientId is manually set here since insertMany bypasses pre-save hooks.
   // ------------------------------------------------------------------
-  const [admin, accountant, pmJohn, pmSarah, buildright, skyline] = await User.insertMany([
-    {
-      name: 'Alice Admin',
-      email: 'admin@constructpro.com',
-      password: PASSWORD_HASH,
-      role: 'ADMIN',
-      clientId: 1,
-    },
-    {
-      name: 'Bob Accountant',
-      email: 'accountant@constructpro.com',
-      password: PASSWORD_HASH,
-      role: 'ACCOUNTANT',
-      clientId: 2,
-    },
-    {
-      name: 'John Manager',
-      email: 'pm.john@constructpro.com',
-      password: PASSWORD_HASH,
-      role: 'PROJECT_MANAGER',
-      clientId: 3,
-    },
-    {
-      name: 'Sarah Manager',
-      email: 'pm.sarah@constructpro.com',
-      password: PASSWORD_HASH,
-      role: 'PROJECT_MANAGER',
-      clientId: 4,
-    },
-    {
-      name: 'BuildRight Corp',
-      email: 'client.buildright@constructpro.com',
-      password: PASSWORD_HASH,
-      role: 'CLIENT_VIEWER',
-      clientId: 5,
-    },
-    {
-      name: 'Skyline Developers',
-      email: 'client.skyline@constructpro.com',
-      password: PASSWORD_HASH,
-      role: 'CLIENT_VIEWER',
-      clientId: 6,
-    },
-  ]);
-  console.log('Users created');
+  // const [admin, accountant, pmJohn, pmSarah, buildright, skyline] = await User.insertMany([
+  //   {
+  //     name: 'Alice Admin',
+  //     email: 'admin@constructpro.com',
+  //     password: PASSWORD_HASH,
+  //     role: 'ADMIN',
+  //     clientId: 1,
+  //   },
+  //   {
+  //     name: 'Bob Accountant',
+  //     email: 'accountant@constructpro.com',
+  //     password: PASSWORD_HASH,
+  //     role: 'ACCOUNTANT',
+  //     clientId: 2,
+  //   },
+  //   {
+  //     name: 'John Manager',
+  //     email: 'pm.john@constructpro.com',
+  //     password: PASSWORD_HASH,
+  //     role: 'PROJECT_MANAGER',
+  //     clientId: 3,
+  //   },
+  //   {
+  //     name: 'Sarah Manager',
+  //     email: 'pm.sarah@constructpro.com',
+  //     password: PASSWORD_HASH,
+  //     role: 'PROJECT_MANAGER',
+  //     clientId: 4,
+  //   },
+  //   {
+  //     name: 'BuildRight Corp',
+  //     email: 'client.buildright@constructpro.com',
+  //     password: PASSWORD_HASH,
+  //     role: 'CLIENT_VIEWER',
+  //     clientId: 5,
+  //   },
+  //   {
+  //     name: 'Skyline Developers',
+  //     email: 'client.skyline@constructpro.com',
+  //     password: PASSWORD_HASH,
+  //     role: 'CLIENT_VIEWER',
+  //     clientId: 6,
+  //   },
+  // ]);
+  // console.log('Users created');
 
   // ------------------------------------------------------------------
   // Projects

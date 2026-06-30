@@ -4,20 +4,8 @@ import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import logo from "../assets/logo.svg";
 
-const DEMO_BY_ROLE = {
-  ADMIN: [{ label: "Anand Admin", email: "anand@constructpro.com" }],
-  ACCOUNTANT: [
-    { label: "Roopan Accountant", email: "roopan@constructpro.com" },
-  ],
-  PROJECT_MANAGER: [
-    { label: "John Manager", email: "pm.john@constructpro.com" },
-    { label: "Sarah Manager", email: "pm.sarah@constructpro.com" },
-  ],
-  CLIENT_VIEWER: [
-    { label: "BuildRight Corp", email: "client.buildright@constructpro.com" },
-    { label: "Skyline Developers", email: "client.skyline@constructpro.com" },
-  ],
-};
+
+
 
 const Login = () => {
   const { login } = useAuth();
@@ -29,8 +17,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setError("");
     setLoading(true);
     try {
@@ -58,14 +45,13 @@ const Login = () => {
           <h2 className="login-title">ConstructPro ERP</h2>
           <p className="login-subtitle">Invoicing &amp; Billing Module</p>
         </div>
-        <form onSubmit={handleSubmit} className="login-form">
+        <div className="login-form">
           <div className="form-group">
             <label>Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
               placeholder="Email address"
             />
           </div>
@@ -76,20 +62,20 @@ const Login = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
             />
           </div>
 
           {error && <p className="error-msg">{error}</p>}
 
           <button
-            type="submit"
+            type="button"
             className="btn btn-primary btn-full"
+            onClick={handleSubmit}
             disabled={loading}
           >
             {loading ? "Signing in…" : "Sign In"}
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

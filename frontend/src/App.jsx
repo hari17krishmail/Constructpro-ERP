@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './components/Toast';
 import ProtectedRoute from './components/ProtectedRoute';
 import Sidebar from './components/Sidebar';
@@ -21,6 +22,7 @@ const DefaultRedirect = () => {
 };
 
 const App = () => (
+  <ThemeProvider>
   <AuthProvider>
     <ToastProvider>
     <BrowserRouter>
@@ -150,6 +152,7 @@ const App = () => (
     </BrowserRouter>
     </ToastProvider>
   </AuthProvider>
+  </ThemeProvider>
 );
 
 export default App;
