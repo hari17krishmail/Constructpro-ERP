@@ -39,7 +39,7 @@ All passwords are `password`.
 anand@constructpro.com | ADMIN | Everything |
 roopan@constructpro.com | ACCOUNTANT | All invoices |
 aabitha@constructpro.com | PROJECT_MANAGER |  Approve or reject invoices |
-hari@gmail.com | PROJECT_MANAGER |  PAID Only |
+hari@gmail.com | CLIENT_VIEWER |  PAID Only |
 
 
 ## Deployment
